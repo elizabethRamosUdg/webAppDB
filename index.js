@@ -18,7 +18,7 @@ express()
   .get('/all', async (req, res) => {
     try {
       const client = await pool.connect();
-      const query = 'SELECT * FROM test_table';
+      let query = 'SELECT * FROM test_table';
       if (req.query.id != undefined) {
         query = 'SELECT * FROM test_table where id='+ req.query.id;
       }
