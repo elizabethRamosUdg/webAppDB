@@ -9,14 +9,16 @@
   <%- include ("../partials/nav.ejs") %>
 
 <div class="container">
-  <h3><span class="glyphicon glyphicon-info-sign"></span> Todos los rows</h3>
+  <h3><span class="glyphicon glyphicon-info-sign"></span> Resultados</h3>
   <textarea disabled name="textarea" rows="10" cols="50">
     <% results.forEach(function(r) { %>
       <%= r.id %> - <%= r.name %>
     <% }); %>
+    <% msg %>
   </textarea>
 </div>
 
 
 </body>
 </html>
+

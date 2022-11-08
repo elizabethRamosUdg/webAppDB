@@ -6,17 +6,27 @@
 </head>
 
 <body>
-
   <%- include ("../partials/nav.ejs") %>
-
+  
     <div class="containerColumns">
-      <h3><span class="glyphicon glyphicon-info-sign"></span>ID a eliminar</h3>
-      <input type='number' />
-      <a type="button" class="btn btn-lg btn-default"
-        href="/"><span
-          class="glyphicon glyphicon-flash"></span> Eliminar</a>
+      <h3><span class="glyphicon glyphicon-info-sign"></span>Numero ID</h3>
+      <input id="idnumber" type='number' />
+      <h3><span class="glyphicon glyphicon-info-sign"></span>Contenido</h3>
+      <a type="button"  onclick="deleteRow()" class="btn btn-lg btn-default" ><span
+          class="glyphicon glyphicon-flash"></span>
+        Eliminar fila</a>
     </div>
-
+    
+  	<script>
+      function deleteRow () {
+        var id = parseInt($('#idnumber').val())
+        if(isNaN(id)){
+          window.location.href = "#";
+        }else{
+          window.location.href = "/d?id="+id;
+        }
+      } 
+    </script>
 
 </body>
 

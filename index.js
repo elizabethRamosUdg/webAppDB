@@ -31,6 +31,23 @@ express()
       res.send("Error " + err);
     }
   })
+  .get('/d', async (req, res) => {
+    try {
+      const client = await pool.connect();
+      let query = null;
+      if (req.query.id != undefined) {
+        query = 'delete FROM test_table where id='+ req.query.id;
+      }
+      const result = await client.query(query);
+      const results = { 'results': (result) ? result.rows : null};
+      const msg = "Fila eliminada";
+      res.render('pages/all', results, msg);
+      client.release();
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  })
   .get('/select', (req, res) => res.render('pages/select'))
   .get('/update', (req, res) => res.render('pages/update'))
   .get('/insert', (req, res) => res.render('pages/insert'))
