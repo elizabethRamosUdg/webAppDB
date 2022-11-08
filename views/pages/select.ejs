@@ -8,13 +8,14 @@
 <body>
 
   <%- include ("../partials/nav.ejs") %>
-
+  <script src="././select.js"></script>
     <div class="containerColumns">
       <h3><span class="glyphicon glyphicon-info-sign"></span>Numero ID</h3>
       <input type='number' />
       <h3><span class="glyphicon glyphicon-info-sign"></span>Contenido</h3>
       <textarea disabled name="textarea" rows="10" cols="50">Vacio</textarea>
-      <a type="button" class="btn btn-lg btn-default" href="/"><span class="glyphicon glyphicon-flash"></span>
+      <a type="button" class="btn btn-lg btn-default" href="/select?tagId=100"><span
+          class="glyphicon glyphicon-flash"></span>
         Actualizar datos</a>
     </div>
 

@@ -27,20 +27,19 @@ express()
       res.send("Error " + err);
     }
   })
-  .get('/select', (req, res) => res.render('pages/select'))
-  .get('/update', (req, res) => res.render('pages/update'))
-  .get('/insert', (req, res) => res.render('pages/insert'))
-  .get('/delete', (req, res) => res.render('pages/delete'))
-  /*.get('/db', async (req, res) => {
+  .get('/select', async (req, res) => {
     try {
       const client = await pool.connect();
-      const result = await client.query('SELECT * FROM test_table');
+      const result = await client.query('SELECT * FROM test_table where id='+ req.query.id);
       const results = { 'results': (result) ? result.rows : null};
-      res.render('pages/db', results );
+      res.render('pages/all', results );
       client.release();
     } catch (err) {
       console.error(err);
       res.send("Error " + err);
     }
-  })*/
+  })
+  .get('/update', (req, res) => res.render('pages/update'))
+  .get('/insert', (req, res) => res.render('pages/insert'))
+  .get('/delete', (req, res) => res.render('pages/delete'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
