@@ -40,8 +40,7 @@ express()
       }
       const result = await client.query(query);
       const results = { 'results': (result) ? result.rows : null};
-      const msg = "Fila eliminada";
-      res.render('pages/all', results, msg);
+      res.render('pages/all', results);
       client.release();
     } catch (err) {
       console.error(err);
