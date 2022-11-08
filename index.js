@@ -18,7 +18,11 @@ express()
   .get('/all', async (req, res) => {
     try {
       const client = await pool.connect();
-      const result = await client.query('SELECT * FROM test_table');
+      if (req.query.id != undefined) {
+        const result = await client.query('SELECT * FROM test_table where id='+ req.query.id);
+      }else {
+        const result = await client.query('SELECT * FROM test_table');
+      }
       const results = { 'results': (result) ? result.rows : null};
       res.render('pages/all', results );
       client.release();
@@ -27,18 +31,7 @@ express()
       res.send("Error " + err);
     }
   })
-  .get('/select', async (req, res) => {
-    try {
-      const client = await pool.connect();
-      const result = await client.query('SELECT * FROM test_table where id='+ req.query.id);
-      const results = { 'results': (result) ? result.rows : null};
-      res.render('pages/all', results );
-      client.release();
-    } catch (err) {
-      console.error(err);
-      res.send("Error " + err);
-    }
-  })
+  .get('/select', (req, res) => res.render('pages/select'))
   .get('/update', (req, res) => res.render('pages/update'))
   .get('/insert', (req, res) => res.render('pages/insert'))
   .get('/delete', (req, res) => res.render('pages/delete'))
