@@ -15,6 +15,11 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
+  .get('/all', (req, res) => res.render('pages/all'))
+  .get('/select', (req, res) => res.render('pages/select'))
+  .get('/update', (req, res) => res.render('pages/update'))
+  .get('/insert', (req, res) => res.render('pages/insert'))
+  .get('/delete', (req, res) => res.render('pages/delete'))
   .get('/db', async (req, res) => {
     try {
       const client = await pool.connect();
