@@ -6,19 +6,27 @@
 </head>
 
 <body>
-
   <%- include ("../partials/nav.ejs") %>
-  <script src="././select.js"></script>
+  
     <div class="containerColumns">
       <h3><span class="glyphicon glyphicon-info-sign"></span>Numero ID</h3>
-      <input type='number' />
+      <input id="idnumber" type='number' />
       <h3><span class="glyphicon glyphicon-info-sign"></span>Contenido</h3>
-      <textarea disabled name="textarea" rows="10" cols="50">Vacio</textarea>
-      <a type="button" class="btn btn-lg btn-default" href="/select?tagId=100"><span
+      <a type="button"  onclick="selectRow()" class="btn btn-lg btn-default" ><span
           class="glyphicon glyphicon-flash"></span>
-        Actualizar datos</a>
+        Seleccionar fila</a>
     </div>
-
+    
+  	<script>
+      function selectRow () {
+        var id = parseInt($('#idnumber').val())
+        if(isNaN(id)){
+          window.location.href = "/all";
+        }else{
+          window.location.href = "/all?id="+id;
+        }
+      } 
+    </script>
 
 </body>
 
