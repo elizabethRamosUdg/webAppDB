@@ -19,10 +19,11 @@ express()
     try {
       const client = await pool.connect();
       if (req.query.id != undefined) {
-        const result = await client.query('SELECT * FROM test_table where id='+ req.query.id);
+        let query = 'SELECT * FROM test_table where id='+ req.query.id;
       }else {
-        const result = await client.query('SELECT * FROM test_table');
+        let query = 'SELECT * FROM test_table where id=';
       }
+      const result = await client.query(query);
       const results = { 'results': (result) ? result.rows : null};
       res.render('pages/all', results );
       client.release();
